@@ -14,7 +14,7 @@ script:
   if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
     TAG=$(grep "ENV MYSQL_VERSION" Dockerfile | awk 'NF>1{print $NF}')
-    docker tag codementality/rpi-galera codementality/rpi-galera-base:latest
+    docker tag codementality/rpi-galera-base codementality/rpi-galera-base:latest
     docker push codementality/rpi-galera-base:latest
     docker push codementality/rpi-galera-base
   fi
