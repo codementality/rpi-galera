@@ -6,16 +6,15 @@ script:
 # prepare qemu
 - docker run --rm --privileged multiarch/qemu-user-static:register --reset
 # build image
-- docker build -t codementality/rpi-galera .
+- docker build -t codementality/rpi-galera-base ./base
 # test image
-- docker run codementality/rpi-galera mysql --version
+#- docker run codementality/rpi-galera mysql --version
 # push image
 - >
   if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
     TAG=$(grep "ENV MYSQL_VERSION" Dockerfile | awk 'NF>1{print $NF}')
-    docker tag codementality/rpi-galera codementality/rpi-galera:$TAG
-    docker push codementality/rpi-galera:$TAG
-    docker push codementality/rpi-galera
+    docker tag codementality/rpi-galera codementality/rpi-galera-base:$TAG
+    docker push codementality/rpi-galera-base:$TAG
+    docker push codementality/rpi-galera-base
   fi
-
