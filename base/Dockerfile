@@ -9,7 +9,7 @@ RUN echo "deb http://mirrordirector.raspbian.org/raspbian/ stretch main contrib 
 
  && apt-get update -y && apt-get upgrade -y \
  && apt-get dist-upgrade -y \
- && apt-get install -y
+ && apt-get install -y \
     build-essential \
     git \
     cmake \
@@ -19,8 +19,7 @@ RUN echo "deb http://mirrordirector.raspbian.org/raspbian/ stretch main contrib 
     libevent-dev \
     libssl-dev \
     libboost-dev \
- && apt-get install -t -y \
-    stretch \
+ && apt-get install -t stretch -y \
     libncurses5-dev \
     libbison-dev \
     bison
